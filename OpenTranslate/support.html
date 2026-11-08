@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Open Translate 技术支持中心：安装与 Safari 扩展设置、常见问题排查、问题反馈与联系方式。">
+<meta name="theme-color" content="#ffffff">
+<title>技术支持 · Open Translate</title>
+<style>
+/* Apple-style minimal legal / support page */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --navline: rgba(0, 0, 0, .10);
+  --nav: rgba(255, 255, 255, .78);
+  --link: #0066cc;
+  --accent: #0071e3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: #1d1d1f;
+    --text: #f5f5f7;
+    --muted: #86868b;
+    --line: #424245;
+    --navline: rgba(255, 255, 255, .14);
+    --nav: rgba(22, 22, 23, .78);
+    --link: #2997ff;
+    --accent: #0071e3;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+
+/* full-width frosted navigation bar */
+.topbar {
+  position: sticky; top: 0; z-index: 30;
+  height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: transparent;
+}
+.topbar::before {
+  content: ""; position: absolute; inset: 0 -100vmax; z-index: -1;
+  background: var(--nav);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--navline);
+}
+.product { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; letter-spacing: -.01em; color: var(--text); }
+.mark {
+  width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: var(--text); color: var(--bg);
+  display: grid; place-items: center; font-size: 9px; font-weight: 700; letter-spacing: .02em;
+}
+.lang { display: inline-flex; align-items: center; gap: 16px; }
+.lang button {
+  position: relative; font: inherit; font-size: 13px; font-weight: 400;
+  color: var(--muted); background: transparent; border: 0; padding: 4px 0; cursor: pointer;
+}
+.lang button.is-active { color: var(--text); font-weight: 600; }
+.lang button.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px; border-radius: 2px; background: var(--text);
+}
+.lang button:focus-visible, a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+[data-lang-block] > .hero,
+[data-lang-block] > .card,
+[data-lang-block] > .footer { max-width: 740px; margin-left: auto; margin-right: auto; }
+
+.hero { text-align: center; padding: 84px 0 56px; }
+h1 {
+  margin: 0 0 16px; font-size: clamp(36px, 5.6vw, 56px); line-height: 1.07;
+  font-weight: 600; letter-spacing: -.028em; color: var(--text);
+}
+.subtitle { margin: 0 auto; max-width: 620px; font-size: 21px; line-height: 1.45; color: var(--muted); font-weight: 400; }
+.badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 26px; }
+.badge {
+  font-size: 12px; font-weight: 400; letter-spacing: .01em; color: var(--muted);
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 980px; background: transparent;
+}
+.meta { margin-top: 30px; font-size: 13px; line-height: 1.8; color: var(--muted); }
+
+.card { padding: 52px 0; border-top: 1px solid var(--line); }
+h2 {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  margin: 0 0 20px; font-size: 26px; line-height: 1.28;
+  font-weight: 600; letter-spacing: -.018em; color: var(--text);
+}
+h2 .num {
+  flex: 0 0 100%; display: block; width: auto; height: auto; margin: 0 0 10px; padding: 0;
+  background: transparent; border-radius: 0; color: var(--muted);
+  font-size: 12px; font-weight: 600; letter-spacing: .12em;
+}
+h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; color: var(--text); margin: 26px 0 8px; }
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+ul, ol { margin: 0 0 16px; padding-left: 24px; }
+li { margin-bottom: 8px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: var(--text); font-weight: 600; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .86em;
+  background: var(--surface); color: var(--text); padding: 2px 6px; border-radius: 4px;
+}
+hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
+
+.toc-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.toc { columns: 2; column-gap: 40px; }
+.toc a { display: block; padding: 7px 0; font-size: 15px; break-inside: avoid; }
+
+.callout { background: var(--surface); border-radius: 14px; padding: 18px 22px; margin: 24px 0; }
+.callout.warn { border-left: 3px solid var(--muted); }
+.callout p { margin: 0; }
+
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 480px; }
+th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th {
+  background: transparent; color: var(--muted); font-weight: 600; font-size: 12px;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+tr:last-child td { border-bottom: 0; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 6px; background: var(--surface); color: var(--muted); white-space: nowrap; }
+
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li { position: relative; padding: 0 0 18px 42px; margin: 0 0 18px; border-bottom: 1px solid var(--line); }
+.steps li:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 1px; width: 27px; height: 27px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--muted); background: transparent;
+  font-size: 13px; font-weight: 600; display: grid; place-items: center;
+}
+
+.faq { padding: 20px 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
+.faq:last-of-type { border-bottom: 0; }
+.q { display: block; font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.q::before, .a::before { content: none; }
+.a { margin: 0; color: var(--text); }
+
+.btn {
+  display: inline-block; background: var(--accent); color: #fff !important;
+  font-size: 14px; font-weight: 400; padding: 9px 20px; border-radius: 980px;
+  margin: 8px 8px 8px 0; border: 1px solid transparent;
+}
+.btn:hover { text-decoration: none; opacity: .88; }
+.btn.secondary { background: transparent; color: var(--link) !important; border-color: var(--line); }
+.contact { text-align: center; }
+.contact h2 { justify-content: center; text-align: center; }
+
+.footer { padding: 28px 0 64px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: 12px; line-height: 2; }
+.footer a { margin: 0 7px; color: var(--muted); }
+.footer a:hover { color: var(--link); }
+.footer p { margin: 6px 0 0; }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero { padding: 54px 0 40px; }
+  h1 { font-size: 34px; }
+  .subtitle { font-size: 18px; }
+  .card { padding: 40px 0; }
+  h2 { font-size: 22px; }
+  .toc { columns: 1; }
+  .lang { gap: 12px; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .topbar, .lang, .btn { display: none; }
+  .hero { padding: 20px 0 28px; }
+  .card { padding: 24px 0; break-inside: avoid; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body data-title-zh="技术支持 · Open Translate" data-title-en="Support · Open Translate">
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="product"><span class="mark" aria-hidden="true">OT</span><span>Open Translate</span></div>
+    <div class="lang" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang-btn="zh" aria-pressed="true">中文</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+
+  <!-- ============================== 中文 ============================== -->
+  <div data-lang-block="zh">
+
+    <div class="hero">
+      <h1>Open Translate 技术支持中心</h1>
+      <p class="subtitle">轻量的网页双语翻译工具 · iOS / macOS / Safari 扩展</p>
+      <div class="badges">
+        <span class="badge">iOS 17+</span>
+        <span class="badge">macOS 12+</span>
+        <span class="badge">Safari Web Extension</span>
+        <span class="badge">9 种翻译引擎</span>
+        <span class="badge">免费开源</span>
+      </div>
+      <div class="meta">由 RayanceKing 独立开发与维护　·　页面更新：2026 年 11 月 8 日　·　<a href="./privacy-policy.html">查看隐私政策</a></div>
+    </div>
+
+    <section class="card" id="zh-start">
+      <h2><span class="num">01</span><span>快速开始</span></h2>
+      <ol class="steps">
+        <li><strong>安装应用</strong><br>从 App Store（或 TestFlight）安装 Open Translate，支持 iOS 17+ 与 macOS 12+。</li>
+        <li><strong>启用 Safari 扩展</strong><br>打开「系统设置 / 设置 → Safari → 扩展」，启用 Open Translate，并为需要翻译的网站授予访问权限。建议先允许全部网站确认功能正常，再按需收窄到指定网站。</li>
+        <li><strong>开始翻译</strong><br>打开任意文章页面，点击页面边缘的悬浮球或按 <code>Alt + T</code>；点悬浮球上方的齿轮进入设置，选择翻译引擎并按需填写自己的 API Key。</li>
+      </ol>
+      <div class="callout"><p>常用快捷键：<code>Alt + T</code> 翻译 / 还原，<code>Alt + Shift + T</code> 翻译选中文本，<code>Alt + S</code> 开关视频双语字幕。</p></div>
+    </section>
+
+    <section class="card" id="zh-faq">
+      <h2><span class="num">02</span><span>常见问题（FAQ）</span></h2>
+
+      <div class="faq">
+        <span class="q">打开网页后点击翻译没有任何反应？</span>
+        <p class="a">请依次确认：① Safari 扩展已启用，且已授予该网站的访问权限；② 网页已完全加载，必要时刷新一次；③ 该域名没有被加入「排除列表」；④ 设置中「自动翻译」的开关状态；⑤ 悬浮球位置是否被页面元素遮挡。若只在某些站点失效，多为站点结构或权限问题，可按下方方式反馈该站点。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">提示请求失败、限流，或 API Key 无效？</span>
+        <p class="a">在设置页对应引擎卡片点击「测试连接」验证密钥与网络。公共的 Google 翻译 / Microsoft 免费通道可能被限流或在某些网络环境下不可达，可稍后重试或切换引擎。使用 DeepL、Azure、OpenAI、DeepSeek、Gemini、Claude 时，请核对密钥、端点类型（DeepL Free / Pro）、区域设置与账户额度。长期使用建议改用自己的正式密钥或自建 LibreTranslate。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">译文没出现，或只翻译了一部分页面？</span>
+        <p class="a">本应用只处理文章与主内容中的可读文本块，<strong>不翻译</strong>输入框、代码块、预格式化文本、导航栏与按钮，也不翻译自身生成的内容。可切换显示模式（双语对照 / 仅译文 / 悬停显示）确认；复杂站点可在项目 <code>SITE_RULES</code> 中补充选择器，欢迎在 GitHub 提交站点适配建议。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">视频双语字幕不显示？</span>
+        <p class="a">需要视频本身提供字幕轨（浏览器 <code>textTracks</code>、WebVTT，或 YouTube 的字幕接口）。直播、纯音乐、无字幕视频无法生成双语字幕——本应用不做语音识别。请按 <code>Alt + S</code> 或在弹出面板中确认字幕已开启，并检查设置里的字号、距底部距离与是否关闭了「自动加载字幕」。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">页面样式错乱，或「仅译文」还原后布局有变化？</span>
+        <p class="a">「仅译文」模式会临时替换段落 DOM，极端动态页面还原后可能出现轻微样式差异，刷新页面即可恢复；「双语对照」最稳妥。此外，少数启用 Trusted Types 的站点若已占用同名策略，悬浮控件可能受限，请附带站点地址反馈给我们。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">如何清空翻译缓存、重置设置或迁移配置？</span>
+        <p class="a">设置页「隐私与安全 → 翻译缓存」可查看条数并一键清空；「恢复默认」可重置设置；设置页还提供 JSON 配置的导入 / 导出，术语库支持 CSV 导入 / 导出，可用于手动迁移到其他设备。缓存只存译文、不存原文，关闭标签页即自动清空。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">我的设置、API Key、术语库会同步到其他设备吗？会上传吗？</span>
+        <p class="a">不会。所有设置与密钥仅保存在本机，应用没有账号体系，也没有开发者服务器，不会同步到 iCloud 或云端。需要迁移请使用设置页的导入 / 导出功能。请注意：导出的 JSON 配置中可能包含你填写的 API Key，请自行妥善保管。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">应用会收集我的浏览记录吗？有广告、内购或账号吗？</span>
+        <p class="a">不会收集浏览记录。本应用没有账号、没有广告、没有应用内购买、没有任何统计或崩溃上报，也没有中转服务器。翻译请求由设备直接发往你选择的引擎。详见<a href="./privacy-policy.html">隐私政策</a>。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">使用这些翻译引擎需要付费吗？</span>
+        <p class="a">应用本身免费且开源。但 DeepL、Azure、OpenAI、DeepSeek、Google Gemini、Claude 等引擎可能需要你自己的 API Key，并可能由服务商收取费用；相关账户、额度与账单由你与服务商自行管理，与本应用无关。Google、MyMemory、Microsoft 免费通道等公共端点无需密钥，但没有服务等级保证。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">macOS 上扩展不生效，或网络请求被拦截？</span>
+        <p class="a">确认扩展已在 Safari 扩展设置中启用，且网站访问范围包含目标站点。macOS 版本启用沙盒与 Hardened Runtime，网络权限已在工程中开启；若处于企业网络、代理或内容过滤环境，请检查是否拦截了对翻译服务端点的请求。可换用「测试连接」快速定位。</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">想自行构建、提功能建议或报告 Bug？</span>
+        <p class="a">项目以 AGPL 许可开源，仓库内包含 Swift 原生工程、浏览器扩展与用户脚本。欢迎在 <a href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">GitHub Issues</a> 提交问题或建议，也欢迎发起 Pull Request。</p>
+      </div>
+    </section>
+
+    <section class="card" id="zh-report">
+      <h2><span class="num">03</span><span>反馈问题时请附上这些信息</span></h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>项目</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>环境</td><td>设备型号、iOS / macOS 版本、Safari 版本、App 版本与安装渠道（App Store / TestFlight / 自行构建）</td></tr>
+            <tr><td>场景</td><td>出问题的网页地址（涉及隐私时只给域名即可）、使用的翻译引擎与显示模式</td></tr>
+            <tr><td>复现</td><td>具体的操作步骤、期望结果与实际结果、完整的错误提示、截图或录屏</td></tr>
+            <tr><td>已尝试</td><td>重启 Safari、刷新页面、切换引擎、重新授权网站权限等排查结果</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn"><p><strong>请勿</strong>在邮件或公开的 Issue 中粘贴 API Key、密钥、账号密码，或包含个人隐私的网页原文。反馈内容会被公开发布在 GitHub 上。</p></div>
+    </section>
+
+    <section class="card contact" id="zh-contact">
+      <h2><span class="num">04</span><span>联系我们</span></h2>
+      <p>没有找到答案？遇到崩溃、站点不兼容或有功能建议，欢迎直接联系开发者。</p>
+      <p>本应用由个人独立维护，通常会在 <strong>1–3 个工作日内</strong>回复，感谢耐心等待。</p>
+      <a class="btn" href="mailto:feedback@edupal.czumc.cn?subject=Open%20Translate%20%E6%8A%80%E6%9C%AF%E6%94%AF%E6%8C%81">发送邮件</a>
+      <a class="btn secondary" href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">提交 GitHub Issue</a>
+      <p style="margin-top:12px; font-size:14px;"><strong>feedback@edupal.czumc.cn</strong></p>
+    </section>
+
+    <section class="card" id="zh-links">
+      <h2><span class="num">05</span><span>自助资源</span></h2>
+      <ul>
+        <li><a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub 仓库与 README</a>——安装说明、功能介绍、项目结构与已知限制</li>
+        <li><a href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">Issues</a>——搜索是否已有相同问题或解决方案</li>
+        <li><a href="https://github.com/RayanceKing/Open-Translate-Terms" target="_blank" rel="noopener">Open-Translate-Terms</a>——内置领域术语库的数据来源</li>
+        <li><a href="./privacy-policy.html">隐私政策</a>——数据处理、第三方引擎与删除方式说明</li>
+      </ul>
+      <p style="font-size:14px; color:var(--muted)">本应用以 AGPL 许可开源，可自行构建与审计；若希望数据完全不出自有环境，可部署 LibreTranslate 或本地模型网关后在设置中指向该地址。</p>
+    </section>
+
+    <div class="footer">
+      <a href="./support.html">技术支持</a>·
+      <a href="./privacy-policy.html">隐私政策</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub 仓库</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate/blob/main/LICENSE" target="_blank" rel="noopener">AGPL 许可</a>
+      <p>© 2026 RayanceKing · Open Translate 以 AGPL 许可开源</p>
+    </div>
+
+  </div>
+
+  <!-- ============================== English ============================== -->
+  <div data-lang-block="en" hidden>
+
+    <div class="hero">
+      <h1>Open Translate Support</h1>
+      <p class="subtitle">A lightweight bilingual web page translation tool · iOS / macOS / Safari Extension</p>
+      <div class="badges">
+        <span class="badge">iOS 17+</span>
+        <span class="badge">macOS 12+</span>
+        <span class="badge">Safari Web Extension</span>
+        <span class="badge">9 translation engines</span>
+        <span class="badge">Free &amp; open source</span>
+      </div>
+      <div class="meta">Independently developed and maintained by RayanceKing　·　Updated: November 8, 2026　·　<a href="./privacy-policy.html">Privacy Policy</a></div>
+    </div>
+
+    <section class="card" id="en-start">
+      <h2><span class="num">01</span><span>Getting Started</span></h2>
+      <ol class="steps">
+        <li><strong>Install the app</strong><br>Install Open Translate from the App Store (or TestFlight). Requires iOS 17+ or macOS 12+.</li>
+        <li><strong>Enable the Safari extension</strong><br>Go to System Settings / Settings → Safari → Extensions, enable Open Translate, and grant website access for the sites you want to translate. Start with access to all websites to confirm everything works, then narrow it down to specific sites if you prefer.</li>
+        <li><strong>Start translating</strong><br>Open any article page and tap the floating button at the screen edge, or press <code>Alt + T</code>. Tap the gear above the floating button to open settings, choose a translation engine, and enter your own API key if required.</li>
+      </ol>
+      <div class="callout"><p>Shortcuts: <code>Alt + T</code> translate / restore, <code>Alt + Shift + T</code> translate selected text, <code>Alt + S</code> toggle bilingual video subtitles.</p></div>
+    </section>
+
+    <section class="card" id="en-faq">
+      <h2><span class="num">02</span><span>Frequently Asked Questions</span></h2>
+
+      <div class="faq">
+        <span class="q">Nothing happens when I tap translate on a page?</span>
+        <p class="a">Check in order: ① the Safari extension is enabled and has access to that website; ② the page finished loading (refresh if needed); ③ the domain is not in your exclusion list; ④ the "auto-translate" setting; ⑤ the floating button is not covered by page elements. If it only fails on certain sites, it is usually a site-structure or permission issue — please send us the site address.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Requests fail, get rate-limited, or my API key is rejected?</span>
+        <p class="a">Use "Test Connection" on the engine card in settings to verify the key and connectivity. The public Google Translate / Microsoft free channels may be rate-limited or unreachable on some networks — retry later or switch engines. For DeepL, Azure, OpenAI, DeepSeek, Gemini or Claude, double-check the key, endpoint type (DeepL Free / Pro), region settings and account quota. For long-term use, a formal key of your own or a self-hosted LibreTranslate instance is recommended.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Translations are missing or only part of the page is translated?</span>
+        <p class="a">The app only processes readable text blocks in articles and main content. It <strong>does not translate</strong> input fields, code blocks, preformatted text, navigation bars, buttons, or content it generated itself. Try a different display mode (bilingual / translation only / hover). For complex sites, selectors can be added to <code>SITE_RULES</code> in the project — site compatibility suggestions are welcome on GitHub.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Bilingual video subtitles do not appear?</span>
+        <p class="a">The video must provide caption tracks (browser <code>textTracks</code>, WebVTT, or YouTube's caption interface). Livestreams, music-only videos and videos without captions cannot be subtitled — the app performs no speech recognition. Press <code>Alt + S</code> or use the popup to confirm subtitles are enabled, and check font size, bottom offset and whether "auto-load subtitles" was turned off in settings.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">The page layout breaks, or looks slightly different after "translation only" is restored?</span>
+        <p class="a">"Translation only" temporarily replaces paragraph DOM nodes; highly dynamic pages may show minor style differences after restoring, which a refresh fixes. Bilingual mode is the safest option. On a few sites using Trusted Types, if a policy with the same name is already taken, the floating controls may be limited — please report the site address to us.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">How do I clear the translation cache, reset settings, or move my configuration?</span>
+        <p class="a">Settings → Privacy &amp; Security → Translation Cache shows the entry count and offers a one-tap clear. "Restore Defaults" resets settings. Settings also supports JSON config import / export, and the glossary supports CSV import / export for manual migration to another device. The cache stores translations only, never source text, and clears automatically when the tab is closed.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Are my settings, API keys and glossaries synced or uploaded to other devices?</span>
+        <p class="a">No. All settings and keys stay on the device. There is no account system and no developer server, and nothing syncs to iCloud or the cloud. Use the import / export feature if you need to migrate. Note that an exported JSON configuration may contain API keys you entered — keep that file safe.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Does the app collect my browsing history? Are there ads, purchases or accounts?</span>
+        <p class="a">It does not collect browsing history. There are no accounts, no ads, no in-app purchases, no analytics or crash reporting, and no relay server. Translation requests go directly from your device to the engine you selected. See the <a href="./privacy-policy.html">Privacy Policy</a> for details.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Do the translation engines cost money?</span>
+        <p class="a">The app itself is free and open source. Engines such as DeepL, Azure, OpenAI, DeepSeek, Google Gemini and Claude may require your own API key and may be billed by the provider; accounts, quotas and billing are managed between you and that provider, independent of this app. Public endpoints such as Google, MyMemory and the Microsoft free channel need no key but come with no service-level guarantee.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">The extension does not work on macOS, or network requests are blocked?</span>
+        <p class="a">Make sure the extension is enabled in Safari's extension settings and that website access covers the target site. The macOS build uses the sandbox and Hardened Runtime with network entitlement enabled. On corporate networks, proxies or content filters, check whether requests to translation endpoints are being blocked. "Test Connection" is a quick way to isolate this.</p>
+      </div>
+
+      <div class="faq">
+        <span class="q">Can I build it myself, suggest a feature, or report a bug?</span>
+        <p class="a">The project is open source under the AGPL license and includes the Swift native project, the browser extension and the userscript. Please open an issue or suggestion in <a href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">GitHub Issues</a>; pull requests are welcome too.</p>
+      </div>
+    </section>
+
+    <section class="card" id="en-report">
+      <h2><span class="num">03</span><span>What To Include In A Support Request</span></h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Item</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td>Environment</td><td>Device model, iOS / macOS version, Safari version, app version and install channel (App Store / TestFlight / self-built)</td></tr>
+            <tr><td>Context</td><td>The page URL (a domain alone is fine if it is private), translation engine and display mode used</td></tr>
+            <tr><td>Reproduction</td><td>Steps to reproduce, expected vs. actual result, the full error message, screenshots or a screen recording</td></tr>
+            <tr><td>Tried already</td><td>Results of restarting Safari, refreshing the page, switching engines, re-granting website access, etc.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn"><p><strong>Never</strong> include API keys, secrets, account passwords, or private page text in an email or a public issue. Issues on GitHub are publicly visible.</p></div>
+    </section>
+
+    <section class="card contact" id="en-contact">
+      <h2><span class="num">04</span><span>Contact Us</span></h2>
+      <p>Still stuck? For crashes, site incompatibilities, or feature ideas, get in touch with the developer directly.</p>
+      <p>This app is maintained by one person; we usually reply within <strong>1–3 business days</strong>. Thank you for your patience.</p>
+      <a class="btn" href="mailto:feedback@edupal.czumc.cn?subject=Open%20Translate%20Support">Send an email</a>
+      <a class="btn secondary" href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">Open a GitHub Issue</a>
+      <p style="margin-top:12px; font-size:14px;"><strong>feedback@edupal.czumc.cn</strong></p>
+    </section>
+
+    <section class="card" id="en-links">
+      <h2><span class="num">05</span><span>Self-Service Resources</span></h2>
+      <ul>
+        <li><a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub repository &amp; README</a> — installation, features, project structure and known limitations</li>
+        <li><a href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">Issues</a> — search for an existing report or solution</li>
+        <li><a href="https://github.com/RayanceKing/Open-Translate-Terms" target="_blank" rel="noopener">Open-Translate-Terms</a> — source of the built-in domain glossaries</li>
+        <li><a href="./privacy-policy.html">Privacy Policy</a> — data handling, third-party engines and deletion options</li>
+      </ul>
+      <p style="font-size:14px; color:var(--muted)">The app is open source under the AGPL license and can be built and audited by anyone. If data must never leave your own environment, deploy LibreTranslate or a local model gateway and point the engine setting at that address.</p>
+    </section>
+
+    <div class="footer">
+      <a href="./support.html">Support</a>·
+      <a href="./privacy-policy.html">Privacy Policy</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate/blob/main/LICENSE" target="_blank" rel="noopener">AGPL License</a>
+      <p>© 2026 RayanceKing · Open Translate is open source under the AGPL license</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var hash = location.hash.replace(/^#/, '').toLowerCase();
+  var stored = null;
+  try { stored = localStorage.getItem('opentranslate-lang'); } catch (e) {}
+  var initial = (hash === 'en' || hash === 'zh') ? hash
+    : (stored || (/^zh/i.test(navigator.language || '') ? 'zh' : 'en'));
+
+  function apply(lang) {
+    document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-lang-block') !== lang;
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+      var active = btn.getAttribute('data-lang-btn') === lang;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = lang === 'zh' ? document.body.dataset.titleZh : document.body.dataset.titleEn;
+    try { localStorage.setItem('opentranslate-lang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang-btn');
+      apply(lang);
+      try { history.replaceState(null, '', location.pathname + location.search + '#' + lang); } catch (e) {}
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  apply(initial);
+})();
+</script>
+</body>
+</html>

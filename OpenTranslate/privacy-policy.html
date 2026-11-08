@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Open Translate 隐私政策：不收集个人信息、无账号、无广告、无追踪、无中转服务器；翻译文本由设备直接发往你选择的翻译引擎。">
+<meta name="theme-color" content="#ffffff">
+<title>隐私政策 · Open Translate</title>
+<style>
+/* Apple-style minimal legal / support page */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --line: #d2d2d7;
+  --navline: rgba(0, 0, 0, .10);
+  --nav: rgba(255, 255, 255, .78);
+  --link: #0066cc;
+  --accent: #0071e3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: #1d1d1f;
+    --text: #f5f5f7;
+    --muted: #86868b;
+    --line: #424245;
+    --navline: rgba(255, 255, 255, .14);
+    --nav: rgba(22, 22, 23, .78);
+    --link: #2997ff;
+    --accent: #0071e3;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+
+/* full-width frosted navigation bar */
+.topbar {
+  position: sticky; top: 0; z-index: 30;
+  height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: transparent;
+}
+.topbar::before {
+  content: ""; position: absolute; inset: 0 -100vmax; z-index: -1;
+  background: var(--nav);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--navline);
+}
+.product { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; letter-spacing: -.01em; color: var(--text); }
+.mark {
+  width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: var(--text); color: var(--bg);
+  display: grid; place-items: center; font-size: 9px; font-weight: 700; letter-spacing: .02em;
+}
+.lang { display: inline-flex; align-items: center; gap: 16px; }
+.lang button {
+  position: relative; font: inherit; font-size: 13px; font-weight: 400;
+  color: var(--muted); background: transparent; border: 0; padding: 4px 0; cursor: pointer;
+}
+.lang button.is-active { color: var(--text); font-weight: 600; }
+.lang button.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px; border-radius: 2px; background: var(--text);
+}
+.lang button:focus-visible, a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+[data-lang-block] > .hero,
+[data-lang-block] > .card,
+[data-lang-block] > .footer { max-width: 740px; margin-left: auto; margin-right: auto; }
+
+.hero { text-align: center; padding: 84px 0 56px; }
+h1 {
+  margin: 0 0 16px; font-size: clamp(36px, 5.6vw, 56px); line-height: 1.07;
+  font-weight: 600; letter-spacing: -.028em; color: var(--text);
+}
+.subtitle { margin: 0 auto; max-width: 620px; font-size: 21px; line-height: 1.45; color: var(--muted); font-weight: 400; }
+.badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 26px; }
+.badge {
+  font-size: 12px; font-weight: 400; letter-spacing: .01em; color: var(--muted);
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 980px; background: transparent;
+}
+.meta { margin-top: 30px; font-size: 13px; line-height: 1.8; color: var(--muted); }
+
+.card { padding: 52px 0; border-top: 1px solid var(--line); }
+h2 {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  margin: 0 0 20px; font-size: 26px; line-height: 1.28;
+  font-weight: 600; letter-spacing: -.018em; color: var(--text);
+}
+h2 .num {
+  flex: 0 0 100%; display: block; width: auto; height: auto; margin: 0 0 10px; padding: 0;
+  background: transparent; border-radius: 0; color: var(--muted);
+  font-size: 12px; font-weight: 600; letter-spacing: .12em;
+}
+h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; color: var(--text); margin: 26px 0 8px; }
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+ul, ol { margin: 0 0 16px; padding-left: 24px; }
+li { margin-bottom: 8px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: var(--text); font-weight: 600; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .86em;
+  background: var(--surface); color: var(--text); padding: 2px 6px; border-radius: 4px;
+}
+hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
+
+.toc-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.toc { columns: 2; column-gap: 40px; }
+.toc a { display: block; padding: 7px 0; font-size: 15px; break-inside: avoid; }
+
+.callout { background: var(--surface); border-radius: 14px; padding: 18px 22px; margin: 24px 0; }
+.callout.warn { border-left: 3px solid var(--muted); }
+.callout p { margin: 0; }
+
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 480px; }
+th, td { text-align: left; padding: 13px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th {
+  background: transparent; color: var(--muted); font-weight: 600; font-size: 12px;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+tr:last-child td { border-bottom: 0; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 6px; background: var(--surface); color: var(--muted); white-space: nowrap; }
+
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+.steps li { position: relative; padding: 0 0 18px 42px; margin: 0 0 18px; border-bottom: 1px solid var(--line); }
+.steps li:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 1px; width: 27px; height: 27px; border-radius: 50%;
+  border: 1px solid var(--line); color: var(--muted); background: transparent;
+  font-size: 13px; font-weight: 600; display: grid; place-items: center;
+}
+
+.faq { padding: 20px 0; margin: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; }
+.faq:last-of-type { border-bottom: 0; }
+.q { display: block; font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.q::before, .a::before { content: none; }
+.a { margin: 0; color: var(--text); }
+
+.btn {
+  display: inline-block; background: var(--accent); color: #fff !important;
+  font-size: 14px; font-weight: 400; padding: 9px 20px; border-radius: 980px;
+  margin: 8px 8px 8px 0; border: 1px solid transparent;
+}
+.btn:hover { text-decoration: none; opacity: .88; }
+.btn.secondary { background: transparent; color: var(--link) !important; border-color: var(--line); }
+.contact { text-align: center; }
+.contact h2 { justify-content: center; text-align: center; }
+
+.footer { padding: 28px 0 64px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: 12px; line-height: 2; }
+.footer a { margin: 0 7px; color: var(--muted); }
+.footer a:hover { color: var(--link); }
+.footer p { margin: 6px 0 0; }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 20px; }
+  .hero { padding: 54px 0 40px; }
+  h1 { font-size: 34px; }
+  .subtitle { font-size: 18px; }
+  .card { padding: 40px 0; }
+  h2 { font-size: 22px; }
+  .toc { columns: 1; }
+  .lang { gap: 12px; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .topbar, .lang, .btn { display: none; }
+  .hero { padding: 20px 0 28px; }
+  .card { padding: 24px 0; break-inside: avoid; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body data-title-zh="隐私政策 · Open Translate" data-title-en="Privacy Policy · Open Translate">
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="product"><span class="mark" aria-hidden="true">OT</span><span>Open Translate</span></div>
+    <div class="lang" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang-btn="zh" aria-pressed="true">中文</button>
+      <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+
+  <!-- ============================== 中文 ============================== -->
+  <div data-lang-block="zh">
+
+    <div class="hero">
+      <h1>Open Translate 隐私政策</h1>
+      <p class="subtitle">适用于 App Store / TestFlight 分发的 iOS、macOS 应用，以及同源的浏览器扩展与用户脚本。</p>
+      <div class="badges">
+        <span class="badge">无账号</span>
+        <span class="badge">无广告</span>
+        <span class="badge">无追踪</span>
+        <span class="badge">无统计上报</span>
+        <span class="badge">无中转服务器</span>
+        <span class="badge">开源可审计</span>
+      </div>
+      <div class="meta">开发者：RayanceKing（独立开发者）　·　生效日期：2026 年 11 月 8 日　·　最后更新：2026 年 11 月 8 日</div>
+    </div>
+
+    <div class="card">
+      <div class="toc-title">目录</div>
+      <nav class="toc">
+        <a href="#zh-s1">01 适用范围与开发者</a>
+        <a href="#zh-s2">02 我们不会收集的数据</a>
+        <a href="#zh-s3">03 保存在你设备上的数据</a>
+        <a href="#zh-s4">04 会发送给第三方的数据</a>
+        <a href="#zh-s5">05 第三方翻译引擎</a>
+        <a href="#zh-s6">06 敏感信息保护</a>
+        <a href="#zh-s7">07 翻译缓存</a>
+        <a href="#zh-s8">08 Safari 扩展权限</a>
+        <a href="#zh-s9">09 数据保留与删除</a>
+        <a href="#zh-s10">10 儿童隐私</a>
+        <a href="#zh-s11">11 安全</a>
+        <a href="#zh-s12">12 政策变更</a>
+        <a href="#zh-s13">13 联系我们</a>
+      </nav>
+    </div>
+
+    <section class="card" id="zh-s1">
+      <h2><span class="num">01</span><span>适用范围与开发者</span></h2>
+      <p>本隐私政策适用于由独立开发者 <strong>RayanceKing</strong>（以下简称“我们”）发布的 <strong>Open Translate</strong>（以下简称“本应用”），包括：</p>
+      <ul>
+        <li>通过 App Store / TestFlight 分发的 iOS 17+ 与 macOS 12+ 原生应用（以 Safari Web Extension 方式工作）；</li>
+        <li>使用同一套翻译逻辑的 Chrome / Edge / Safari 浏览器扩展，以及 Tampermonkey 用户脚本。</li>
+      </ul>
+      <p>Open Translate 是一个轻量的<strong>网页双语翻译工具</strong>：只处理文章与主内容中的可读文本块，在原文后就地插入译文。项目以 AGPL 许可开源，源代码可自行审阅。使用本应用<strong>无需注册账号</strong>，也<strong>没有应用内购买</strong>。</p>
+    </section>
+
+    <section class="card" id="zh-s2">
+      <h2><span class="num">02</span><span>我们不会收集的数据</span></h2>
+      <ul>
+        <li>姓名、邮箱、手机号、账号与密码等身份信息；</li>
+        <li>设备标识符、IDFA / 广告标识符、我们侧的 IP 访问日志；</li>
+        <li>精确或粗略的地理位置；</li>
+        <li>通讯录、照片、日历、麦克风、文件等系统权限数据；</li>
+        <li>浏览历史、访问的网站清单、用户画像或兴趣标签；</li>
+        <li>支付与账单信息（本应用没有内购与订阅）；</li>
+        <li>使用时长、点击流、崩溃日志、遥测或任何“统计数据上报”。</li>
+      </ul>
+      <p>本应用不跨网站或跨应用追踪你，也不使用 Cookie 建立用户画像。由于不存在开发者服务器，<strong>我们没有任何可供查询、导出或出售的用户数据库</strong>。</p>
+    </section>
+
+    <section class="card" id="zh-s3">
+      <h2><span class="num">03</span><span>保存在你设备上的数据</span></h2>
+      <p>以下数据仅保存在<strong>本机</strong>，用于记住你的偏好，仅本机可读，不会上传给我们，也不会同步到 iCloud 或任何其他服务器：</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>数据</th><th>内容示例</th><th>保存位置</th><th>是否上传</th></tr></thead>
+          <tbody>
+            <tr><td>设置与偏好</td><td>目标语言、显示模式、译文样式、主题、快捷键、悬浮球位置</td><td rowspan="4">扩展本地存储（<code>chrome.storage.local</code> / <code>browser.storage.local</code>）与应用沙盒</td><td rowspan="4"><span class="tag">否</span></td></tr>
+            <tr><td>自动翻译规则</td><td>按域名设置的“总是翻译”与“排除列表”</td></tr>
+            <tr><td>API Key</td><td>按引擎独立保存，仅用于向对应引擎发起请求</td></tr>
+            <tr><td>术语与提示词</td><td>自定义术语、已勾选的领域词库、AI 提示词模板</td></tr>
+            <tr><td>配置文件</td><td>你手动导出的 JSON 配置 / CSV 术语表</td><td>由你选择保存的本地文件</td><td><span class="tag">否</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>内置术语库（36 个领域词库）随应用打包，使用时<strong>不访问 GitHub</strong>，离线也可匹配。在 iOS / macOS 上，这些数据受系统沙盒隔离保护。</p>
+      <div class="callout"><p><strong>如何清除：</strong>卸载应用 / 移除扩展即可删除全部本地设置与密钥；也可在设置页使用「恢复默认」重置。</p></div>
+    </section>
+
+    <section class="card" id="zh-s4">
+      <h2><span class="num">04</span><span>会发送给第三方的数据</span></h2>
+      <p>只有当你主动触发翻译（包括开启自动翻译、视频双语字幕，或点击「测试连接」）时，以下内容才会从你的设备<strong>直接发往你选择的翻译服务商</strong>：</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>数据</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>待翻译文本</td><td>文章正文中的可读段落，或你选中的文本</td></tr>
+            <tr><td>字幕文本</td><td>开启视频双语字幕时，仅<strong>当前时间点前后的一小段</strong>字幕；不会一次性发送整部视频</td></tr>
+            <tr><td>测试连接</td><td>一句固定的英文短句，用于验证 Key 与网络是否可用</td></tr>
+            <tr><td>AI 翻译附加信息</td><td>你自定义的提示词模板，以及本次文本命中的术语条目（不会发送整个词库）</td></tr>
+            <tr><td>鉴权信息</td><td>你为该引擎填写的 API Key，作为请求凭证发送给该引擎</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>传输特点：</strong>设备与引擎之间直连；没有我们的中转服务器；没有统计数据上报；我们不记录请求日志；请求不与你的账号或身份关联（本应用也没有账号体系）。</p>
+      <div class="callout warn"><p><strong>请注意：</strong>我们不控制第三方引擎如何处理这些文本，各服务商自身的隐私政策适用于这些请求，其保留与记录机制由服务商决定。请勿对高度敏感的机密内容使用在线翻译引擎；如需数据不出自有环境，可选择自建 <strong>LibreTranslate</strong> 或本地网关。</p></div>
+    </section>
+
+    <section class="card" id="zh-s5">
+      <h2><span class="num">05</span><span>第三方翻译引擎</span></h2>
+      <p>设置页可在以下 9 个引擎间切换，密钥按引擎独立保存。使用哪一个引擎完全由你选择：</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>引擎</th><th>密钥</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td>Google 翻译</td><td>无需</td><td>公共 gtx 端点，高频调用可能被限流</td></tr>
+            <tr><td>MyMemory</td><td>无需</td><td>公益翻译记忆库，单次 500 字符</td></tr>
+            <tr><td>DeepL</td><td>需要</td><td>Free / Pro 两套端点</td></tr>
+            <tr><td>Microsoft 翻译</td><td>可选</td><td>默认使用 Bing 翻译页的公开通道，也可改用你自己的 Azure 密钥</td></tr>
+            <tr><td>LibreTranslate</td><td>自建</td><td>开源可自部署，数据不出你自己的服务器</td></tr>
+            <tr><td>OpenAI</td><td>需要</td><td>也兼容 one-api、OpenRouter、本地 Ollama 等网关</td></tr>
+            <tr><td>DeepSeek</td><td>需要</td><td>兼容 OpenAI 格式的模型服务</td></tr>
+            <tr><td>Google Gemini</td><td>需要</td><td>Google 提供的生成式模型服务</td></tr>
+            <tr><td>Claude</td><td>需要</td><td>Anthropic 提供的生成式模型服务</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Microsoft 免费通道：</strong>会先访问一次 <code>bing.com/translator</code> 读取公开凭证（IG、IID 与 token），该前置请求<strong>不上传任何待翻译内容</strong>；随后翻译请求发往 <code>/ttranslatev3</code>。</li>
+        <li><strong>YouTube 双语字幕：</strong>从播放器已提供的字幕轨道 / 接口读取字幕文本，仅用于显示与翻译；本应用不进行语音识别。</li>
+        <li><strong>公共端点：</strong>即使无需密钥，请求仍由该服务商按自身政策处理，且没有服务等级保证。</li>
+      </ul>
+      <p>各服务商的数据处理方式、保留期限与退出机制，以其官网公布的隐私政策为准；使用其服务即同时受其条款约束。若你使用兼容网关（如 one-api、OpenRouter、本地 Ollama），数据将发往<strong>你自己配置的网关地址</strong>，请自行确认该网关的隐私实践。</p>
+    </section>
+
+    <section class="card" id="zh-s6">
+      <h2><span class="num">06</span><span>敏感信息保护</span></h2>
+      <p>本应用默认开启「屏蔽敏感信息」：<strong>邮箱地址、疑似电话号码、常见 API Token</strong> 在离开设备前会被替换为占位符，译文返回后在本地还原。你可以在设置中关闭该选项。</p>
+      <div class="callout warn"><p>这层保护是基于模式匹配的尽力而为机制，<strong>不保证识别所有敏感内容</strong>。翻译任何文本前请自行判断；如需最高级别的保护，请使用本地 / 自建引擎。</p></div>
+    </section>
+
+    <section class="card" id="zh-s7">
+      <h2><span class="num">07</span><span>翻译缓存</span></h2>
+      <ul>
+        <li><strong>位置：</strong>会话级存储（<code>chrome.storage.session</code> / <code>sessionStorage</code>），仅在内存中，<strong>不写入磁盘</strong>。</li>
+        <li><strong>内容：</strong>只保存译文与 64 位指纹作为键，<strong>不保存原文</strong>，因此无法从缓存反推出你读过什么。</li>
+        <li><strong>生命周期：</strong>条目最多保留 12 小时、最多 2000 条，超出按写入顺序淘汰；关闭标签页或关闭浏览器即清空，刷新页面仍可命中。</li>
+        <li><strong>自动失效：</strong>更换引擎、语言、AI 提示词、自定义术语、领域词库选择，或内置词库更新，都会得到不同的缓存键，不会误用旧译文。</li>
+        <li><strong>手动清空：</strong>设置页「隐私与安全 → 翻译缓存」显示当前条数并提供「清空缓存」。</li>
+      </ul>
+    </section>
+
+    <section class="card" id="zh-s8">
+      <h2><span class="num">08</span><span>Safari 扩展权限</span></h2>
+      <p>为了在你正在阅读的网页中就地插入译文，扩展需要「读取与更改网页内容」权限，并由你在 <strong>Safari → 设置 → 扩展</strong> 中授予网站访问范围。网页内容只在当前页面内被处理，用于识别正文段落与插入译文，<strong>不会被我们保存或上传</strong>。</p>
+      <p>你可以随时把网站访问权限改为「询问」或仅指定网站，也可以直接关闭扩展；关闭后本应用不会读取任何网页内容。翻译文本是否发往第三方，仍遵循第 4 节所述规则——仅在你主动翻译时、仅发往你选择的引擎。</p>
+    </section>
+
+    <section class="card" id="zh-s9">
+      <h2><span class="num">09</span><span>数据保留与删除</span></h2>
+      <p>我们自身不持有、不保存任何用户数据，因此没有可请求导出或删除的服务器记录。你可以随时自行完成以下操作：</p>
+      <ol>
+        <li>卸载应用 / 移除扩展 —— 删除全部本地设置、术语与 API Key；</li>
+        <li>在系统设置中撤销扩展的网站访问权限；</li>
+        <li>在设置页清空翻译缓存、删除已保存的 API Key，或使用「恢复默认」重置配置；</li>
+        <li>删除你手动导出的 JSON / CSV 配置文件。</li>
+      </ol>
+      <p>对于你已经发送给第三方引擎的文本，其保留与删除遵循该服务商的隐私政策与其日志机制，我们无法代为删除。若需行使相关权利，请直接联系对应服务商。</p>
+    </section>
+
+    <section class="card" id="zh-s10">
+      <h2><span class="num">10</span><span>儿童隐私</span></h2>
+      <p>本应用不面向 13 岁以下儿童，也不会故意向儿童索取或收集个人身份信息。若你有理由相信儿童通过本应用提供了个人信息，请通过下方邮箱联系我们，我们会尽快处理。</p>
+    </section>
+
+    <section class="card" id="zh-s11">
+      <h2><span class="num">11</span><span>安全</span></h2>
+      <ul>
+        <li>本地数据受操作系统 / 浏览器沙盒隔离保护，仅本机可读；</li>
+        <li>翻译请求通过 HTTPS 直接发往所选服务商，没有中间节点；</li>
+        <li>你填写的 API Key 只保存在本机，由你自行负责保管，请勿在导出配置或反馈问题时外泄；</li>
+        <li>项目代码以 AGPL 开源，任何人都可以审阅其网络行为。</li>
+      </ul>
+      <p>需要提醒的是：任何在线翻译服务都可能按其政策记录请求，实际安全性也取决于你选择的服务商与所处网络环境。</p>
+    </section>
+
+    <section class="card" id="zh-s12">
+      <h2><span class="num">12</span><span>政策变更</span></h2>
+      <p>如果数据处理方式发生变化，我们会更新本页，并修改顶部的「最后更新」日期。建议你定期查看本页面；继续使用本应用即表示你了解更新后的政策。重大变更也会在开源仓库的发布说明中提示。</p>
+    </section>
+
+    <section class="card" id="zh-s13">
+      <h2><span class="num">13</span><span>联系我们</span></h2>
+      <p>如对本隐私政策、数据处理方式或你的权利有任何疑问，欢迎联系我们。本应用由个人独立开发与维护，我们会尽力及时回复。</p>
+      <p><strong>开发者：</strong>RayanceKing　·　<strong>隐私问题：</strong><a href="mailto:feedback@edupal.czumc.cn">feedback@edupal.czumc.cn</a></p>
+      <a class="btn" href="mailto:feedback@edupal.czumc.cn?subject=Open%20Translate%20%E9%9A%90%E7%A7%81%E9%97%AE%E9%A2%98">发送邮件</a>
+      <a class="btn secondary" href="./support.html">技术支持中心</a>
+      <a class="btn secondary" href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">GitHub Issues</a>
+      <hr>
+      <p style="font-size:14px; color:var(--muted)">本隐私政策自 <strong>2026 年 11 月 8 日</strong> 起生效，适用于通过 App Store 分发的 Open Translate 应用版本。</p>
+    </section>
+
+    <div class="footer">
+      <a href="./support.html">技术支持</a>·
+      <a href="./privacy-policy.html">隐私政策</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub 仓库</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate/blob/main/LICENSE" target="_blank" rel="noopener">AGPL 许可</a>
+      <p>© 2026 RayanceKing · Open Translate 以 AGPL 许可开源</p>
+    </div>
+
+  </div>
+
+  <!-- ============================== English ============================== -->
+  <div data-lang-block="en" hidden>
+
+    <div class="hero">
+      <h1>Open Translate Privacy Policy</h1>
+      <p class="subtitle">Applies to the iOS and macOS app distributed via App Store / TestFlight, as well as the browser extension and userscript built from the same codebase.</p>
+      <div class="badges">
+        <span class="badge">No account</span>
+        <span class="badge">No ads</span>
+        <span class="badge">No tracking</span>
+        <span class="badge">No analytics</span>
+        <span class="badge">No relay server</span>
+        <span class="badge">Open source</span>
+      </div>
+      <div class="meta">Developer: RayanceKing (independent developer)　·　Effective: November 8, 2026　·　Last updated: November 8, 2026</div>
+    </div>
+
+    <div class="card">
+      <div class="toc-title">Contents</div>
+      <nav class="toc">
+        <a href="#en-s1">01 Scope &amp; Developer</a>
+        <a href="#en-s2">02 What We Do Not Collect</a>
+        <a href="#en-s3">03 Data Stored On Your Device</a>
+        <a href="#en-s4">04 Data Sent To Third Parties</a>
+        <a href="#en-s5">05 Third-Party Translation Engines</a>
+        <a href="#en-s6">06 Sensitive Information</a>
+        <a href="#en-s7">07 Translation Cache</a>
+        <a href="#en-s8">08 Safari Extension Permissions</a>
+        <a href="#en-s9">09 Retention &amp; Deletion</a>
+        <a href="#en-s10">10 Children's Privacy</a>
+        <a href="#en-s11">11 Security</a>
+        <a href="#en-s12">12 Changes To This Policy</a>
+        <a href="#en-s13">13 Contact Us</a>
+      </nav>
+    </div>
+
+    <section class="card" id="en-s1">
+      <h2><span class="num">01</span><span>Scope &amp; Developer</span></h2>
+      <p>This privacy policy applies to <strong>Open Translate</strong> (the "App"), published by the independent developer <strong>RayanceKing</strong> ("we"), including:</p>
+      <ul>
+        <li>The native iOS 17+ and macOS 12+ app distributed through App Store / TestFlight, which works as a Safari Web Extension;</li>
+        <li>The Chrome / Edge / Safari browser extension and the Tampermonkey userscript built from the same translation logic.</li>
+      </ul>
+      <p>Open Translate is a lightweight <strong>bilingual web page translation tool</strong>: it processes readable text blocks in articles and main content only, inserting translations in place right after the original text. The project is open source under the AGPL license, so its source code can be audited by anyone. <strong>No account is required</strong> and there are <strong>no in-app purchases</strong>.</p>
+    </section>
+
+    <section class="card" id="en-s2">
+      <h2><span class="num">02</span><span>What We Do Not Collect</span></h2>
+      <ul>
+        <li>Name, email address, phone number, account credentials, or other identity information;</li>
+        <li>Device identifiers, IDFA / advertising identifiers, or IP access logs on our side;</li>
+        <li>Precise or approximate location;</li>
+        <li>Contacts, photos, calendar, microphone, files, or other system-permission data;</li>
+        <li>Browsing history, lists of websites visited, user profiles, or interest tags;</li>
+        <li>Payment or billing information (the App has no in-app purchases or subscriptions);</li>
+        <li>Session duration, clickstream, crash logs, telemetry, or any "statistics reporting".</li>
+      </ul>
+      <p>The App does not track you across websites or apps and does not use cookies for profiling. Because there is no developer server, <strong>we hold no user database that could be queried, exported, or sold</strong>.</p>
+    </section>
+
+    <section class="card" id="en-s3">
+      <h2><span class="num">03</span><span>Data Stored On Your Device</span></h2>
+      <p>The following data stays <strong>on your device only</strong>, to remember your preferences. It is readable only on that device, is never uploaded to us, and is not synced to iCloud or any other server:</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Data</th><th>Examples</th><th>Where</th><th>Uploaded</th></tr></thead>
+          <tbody>
+            <tr><td>Settings &amp; preferences</td><td>Target language, display mode, translation styling, theme, shortcuts, floating button position</td><td rowspan="4">Extension local storage (<code>chrome.storage.local</code> / <code>browser.storage.local</code>) and the app sandbox</td><td rowspan="4"><span class="tag">No</span></td></tr>
+            <tr><td>Auto-translate rules</td><td>Per-domain "always translate" and exclusion lists</td></tr>
+            <tr><td>API keys</td><td>Stored per engine; used only to call that engine</td></tr>
+            <tr><td>Glossaries &amp; prompts</td><td>Custom terms, selected domain glossaries, AI prompt templates</td></tr>
+            <tr><td>Config files</td><td>JSON configuration / CSV glossary files you export manually</td><td>A local file you choose</td><td><span class="tag">No</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The built-in glossary set (36 domain glossaries) ships inside the app and <strong>does not contact GitHub</strong> at runtime; matching works offline. On iOS / macOS this data is protected by the system sandbox.</p>
+      <div class="callout"><p><strong>How to erase:</strong> uninstall the App or remove the extension to delete all local settings and keys; you can also use "Restore Defaults" in the settings page.</p></div>
+    </section>
+
+    <section class="card" id="en-s4">
+      <h2><span class="num">04</span><span>Data Sent To Third Parties</span></h2>
+      <p>Only when you initiate a translation (including auto-translate, bilingual video subtitles, or tapping "Test Connection") is the following sent <strong>directly from your device to the translation provider you selected</strong>:</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Data</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td>Text to translate</td><td>Readable paragraphs of an article, or text you selected</td></tr>
+            <tr><td>Subtitle text</td><td>With bilingual subtitles enabled, only <strong>a short window of subtitles around the current playback position</strong>; a whole video is never sent at once</td></tr>
+            <tr><td>Test connection</td><td>One fixed short English sentence used to verify the key and connectivity</td></tr>
+            <tr><td>AI translation extras</td><td>Your custom prompt template and glossary terms matched in that text (the entire glossary is never sent)</td></tr>
+            <tr><td>Authentication</td><td>The API key you entered for that engine, sent as a request credential to that engine</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>How it travels:</strong> a direct connection from your device to the engine; no relay server of ours; no analytics reporting; no request logs kept by us; and no association with any account or identity (the App has no account system).</p>
+      <div class="callout warn"><p><strong>Please note:</strong> we do not control how third-party engines handle this text. Each provider's own privacy policy applies to those requests, including its retention and logging practices. Do not use online translation engines for highly sensitive confidential content. Choose a self-hosted <strong>LibreTranslate</strong> instance or a local gateway if the data must stay in your own environment.</p></div>
+    </section>
+
+    <section class="card" id="en-s5">
+      <h2><span class="num">05</span><span>Third-Party Translation Engines</span></h2>
+      <p>You can switch between the following 9 engines in settings; keys are stored separately per engine. The choice of provider is entirely yours:</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Engine</th><th>Key</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Google Translate</td><td>Not required</td><td>Public gtx endpoint; may be rate-limited under heavy use</td></tr>
+            <tr><td>MyMemory</td><td>Not required</td><td>Community translation memory, 500 characters per request</td></tr>
+            <tr><td>DeepL</td><td>Required</td><td>Free and Pro endpoints</td></tr>
+            <tr><td>Microsoft Translator</td><td>Optional</td><td>Uses Bing Translator's public channel by default, or your own Azure key</td></tr>
+            <tr><td>LibreTranslate</td><td>Self-hosted</td><td>Open source and self-deployable; data stays on your own server</td></tr>
+            <tr><td>OpenAI</td><td>Required</td><td>Also works with one-api, OpenRouter, a local Ollama instance, and similar gateways</td></tr>
+            <tr><td>DeepSeek</td><td>Required</td><td>OpenAI-compatible model service</td></tr>
+            <tr><td>Google Gemini</td><td>Required</td><td>Generative model service provided by Google</td></tr>
+            <tr><td>Claude</td><td>Required</td><td>Generative model service provided by Anthropic</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>Microsoft free channel:</strong> first makes one request to <code>bing.com/translator</code> to read public credentials (IG, IID and a token). This preflight request <strong>does not upload any text to translate</strong>; the translation request then goes to <code>/ttranslatev3</code>.</li>
+        <li><strong>YouTube bilingual subtitles:</strong> subtitle text is read from the caption tracks the player already exposes, and used only for display and translation. The App performs no speech recognition.</li>
+        <li><strong>Public endpoints:</strong> even when no key is required, requests are handled under that provider's own policy and come with no service-level guarantee.</li>
+      </ul>
+      <p>Each provider's handling, retention period and opt-out mechanisms are governed by the privacy policy published on its website; using its service also means accepting its terms. With compatible gateways (one-api, OpenRouter, local Ollama, etc.), data goes to <strong>the gateway address you configured</strong> — please review that gateway's privacy practices yourself.</p>
+    </section>
+
+    <section class="card" id="en-s6">
+      <h2><span class="num">06</span><span>Sensitive Information</span></h2>
+      <p>"Mask sensitive information" is enabled by default: <strong>email addresses, probable phone numbers, and common API tokens</strong> are replaced with placeholders before leaving the device and restored locally when the translation returns. You can turn this off in settings.</p>
+      <div class="callout warn"><p>This is a best-effort pattern-matching mechanism and <strong>cannot guarantee detection of every sensitive value</strong>. Please use your own judgment before translating any text. For the highest level of protection, use a local or self-hosted engine.</p></div>
+    </section>
+
+    <section class="card" id="en-s7">
+      <h2><span class="num">07</span><span>Translation Cache</span></h2>
+      <ul>
+        <li><strong>Where:</strong> session storage (<code>chrome.storage.session</code> / <code>sessionStorage</code>), in memory only, <strong>never written to disk</strong>.</li>
+        <li><strong>What:</strong> translations only, keyed by a 64-bit fingerprint; <strong>source text is never stored</strong>, so the cache cannot reveal what you read.</li>
+        <li><strong>Lifetime:</strong> entries expire after at most 12 hours, capped at 2,000 entries (oldest first); closing the tab or browser clears them, while a page refresh still hits the cache.</li>
+        <li><strong>Auto-invalidation:</strong> changing the engine, languages, AI prompt, custom terms, selected glossaries, or an updated built-in glossary produces a different cache key, so stale translations are never reused.</li>
+        <li><strong>Manual clearing:</strong> Settings → Privacy &amp; Security → Translation Cache shows the entry count and offers "Clear cache".</li>
+      </ul>
+    </section>
+
+    <section class="card" id="en-s8">
+      <h2><span class="num">08</span><span>Safari Extension Permissions</span></h2>
+      <p>To insert translations into the page you are reading, the extension needs permission to read and modify web content, and you must grant website access in <strong>Safari → Settings → Extensions</strong>. Page content is processed only within the current page, to identify body paragraphs and insert translations; <strong>it is not stored or uploaded by us</strong>.</p>
+      <p>You can change website access to "Ask" or to specific sites, or disable the extension entirely at any time; once disabled, the App reads no web content. Whether text is sent to a third party still follows Section 4 — only when you initiate a translation, and only to the engine you selected.</p>
+    </section>
+
+    <section class="card" id="en-s9">
+      <h2><span class="num">09</span><span>Retention &amp; Deletion</span></h2>
+      <p>We hold and retain no user data, so there are no server-side records to export or delete. You can take the following steps yourself at any time:</p>
+      <ol>
+        <li>Uninstall the App / remove the extension — deletes all local settings, glossaries and API keys;</li>
+        <li>Revoke the extension's website access in system settings;</li>
+        <li>Clear the translation cache, delete saved API keys, or use "Restore Defaults" in the settings page;</li>
+        <li>Delete any JSON / CSV configuration files you exported manually.</li>
+      </ol>
+      <p>Text you have already sent to a third-party engine is subject to that provider's privacy policy and logging practices; we cannot delete it on your behalf. To exercise related rights, please contact the provider directly.</p>
+    </section>
+
+    <section class="card" id="en-s10">
+      <h2><span class="num">10</span><span>Children's Privacy</span></h2>
+      <p>The App is not directed at children under 13, and we do not knowingly solicit or collect personally identifiable information from children. If you believe a child has provided personal information through the App, please contact us using the address below and we will address it promptly.</p>
+    </section>
+
+    <section class="card" id="en-s11">
+      <h2><span class="num">11</span><span>Security</span></h2>
+      <ul>
+        <li>Local data is isolated by the operating system / browser sandbox and readable only on that device;</li>
+        <li>Translation requests go directly to the chosen provider over HTTPS, with no intermediary;</li>
+        <li>API keys you enter stay on the device and are your responsibility — never expose them in exported configs or support requests;</li>
+        <li>The project is open source under AGPL, so anyone can audit its network behavior.</li>
+      </ul>
+      <p>Keep in mind that any online translation service may log requests under its own policy, and actual security also depends on the provider you choose and your network environment.</p>
+    </section>
+
+    <section class="card" id="en-s12">
+      <h2><span class="num">12</span><span>Changes To This Policy</span></h2>
+      <p>If our data practices change, we will update this page and revise the "Last updated" date at the top. We encourage you to review it periodically; continued use of the App means you are aware of the updated policy. Significant changes will also be noted in the open-source repository's release notes.</p>
+    </section>
+
+    <section class="card" id="en-s13">
+      <h2><span class="num">13</span><span>Contact Us</span></h2>
+      <p>For questions about this policy, our data practices, or your rights, please get in touch. The App is developed and maintained by an individual, and we do our best to respond promptly.</p>
+      <p><strong>Developer:</strong> RayanceKing　·　<strong>Privacy inquiries:</strong> <a href="mailto:feedback@edupal.czumc.cn">feedback@edupal.czumc.cn</a></p>
+      <a class="btn" href="mailto:feedback@edupal.czumc.cn?subject=Open%20Translate%20Privacy%20Question">Send an email</a>
+      <a class="btn secondary" href="./support.html">Support Center</a>
+      <a class="btn secondary" href="https://github.com/RayanceKing/Open-Translate/issues" target="_blank" rel="noopener">GitHub Issues</a>
+      <hr>
+      <p style="font-size:14px; color:var(--muted)">This policy is effective as of <strong>November 8, 2026</strong> and applies to the Open Translate app version distributed through the App Store.</p>
+    </section>
+
+    <div class="footer">
+      <a href="./support.html">Support</a>·
+      <a href="./privacy-policy.html">Privacy Policy</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate" target="_blank" rel="noopener">GitHub</a>·
+      <a href="https://github.com/RayanceKing/Open-Translate/blob/main/LICENSE" target="_blank" rel="noopener">AGPL License</a>
+      <p>© 2026 RayanceKing · Open Translate is open source under the AGPL license</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var hash = location.hash.replace(/^#/, '').toLowerCase();
+  var stored = null;
+  try { stored = localStorage.getItem('opentranslate-lang'); } catch (e) {}
+  var initial = (hash === 'en' || hash === 'zh') ? hash
+    : (stored || (/^zh/i.test(navigator.language || '') ? 'zh' : 'en'));
+
+  function apply(lang) {
+    document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-lang-block') !== lang;
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+      var active = btn.getAttribute('data-lang-btn') === lang;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = lang === 'zh' ? document.body.dataset.titleZh : document.body.dataset.titleEn;
+    try { localStorage.setItem('opentranslate-lang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang-btn');
+      apply(lang);
+      try { history.replaceState(null, '', location.pathname + location.search + '#' + lang); } catch (e) {}
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  apply(initial);
+})();
+</script>
+</body>
+</html>
