@@ -64,10 +64,10 @@ body {
 }
 .product { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; letter-spacing: -.01em; color: var(--text); }
 .mark {
-  width: 22px; height: 22px; border-radius: 50%; flex: none;
-  background: var(--text); color: var(--bg);
-  display: grid; place-items: center; font-size: 9px; font-weight: 700; letter-spacing: .02em;
+  width: 22px; height: 22px; flex: none;
+  display: grid; place-items: center;
 }
+.mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .lang { display: inline-flex; align-items: center; gap: 16px; }
 .lang button {
   position: relative; font: inherit; font-size: 13px; font-weight: 400;
@@ -195,7 +195,7 @@ tr:last-child td { border-bottom: 0; }
 <div class="wrap">
 
   <div class="topbar">
-    <div class="product"><span class="mark" aria-hidden="true">OT</span><span>Open Translate</span></div>
+    <div class="product"><span class="mark" aria-hidden="true"><img src="src/icon-256@1x.png" alt=""></span><span>Open Translate</span></div>
     <div class="lang" role="group" aria-label="Language / 语言">
       <button type="button" data-lang-btn="zh" aria-pressed="true">中文</button>
       <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
